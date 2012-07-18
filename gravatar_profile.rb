@@ -9,5 +9,7 @@ class GravatarProfile
     response = JSON.parse(RestClient.get("http://gravatar.com/#{user_hash}.json"))
     profile = response['entry'].first
     @name, @photo, @url = profile['displayName'], profile['photos'].first['value'], profile['profileUrl']
+  rescue
+    @name, @photo, @url = 'Unknown', '', ''
   end
 end

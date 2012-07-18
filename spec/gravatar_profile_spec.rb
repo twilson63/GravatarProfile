@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../gravatar_profile'
 
 describe GravatarProfile do
+  context 'Happy Food' do
   subject { GravatarProfile.new('tom@jackhq.com') }
   it 'should be true' do
     subject.should be_true
@@ -16,5 +17,14 @@ describe GravatarProfile do
 
   it 'should get profile url' do
     subject.url.should == 'http://gravatar.com/tjackhq'
+  end
+  end
+  context 'Bad Food' do
+    subject { GravatarProfile.new('foo@foo.com') }
+    it 'should handle bad food' do
+      subject.name.should == 'Unknown'
+      subject.photo.should == ''
+      subject.url.should == ''
+    end
   end
 end
